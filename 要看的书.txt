@@ -1,0 +1,22 @@
+标准流程：
+1. c++ Primer 英文版（第四或第五版）
+全部看完习题做完是必须的。渲染程序设计比较复杂，后期会用到c++的全部特性。c++学的越好后面越轻松。
+要看英文版，计算机翻来覆去就那么几个单词，基础打好了以后查stack overflow这些网站也方便。
+
+2. Introduction to 3D Game Programming with DirectX 11
+也就是经典的龙书，渲染入门，介绍了很多基本渲染算法，看完习题做完
+
+3. Practical Rendering and Computation with Direct3D 11 
+详细介绍d3d11的架构和api，比较好的参考书，可以和龙书配合着看
+
+4. 数学库请用Eigen，这个比较容易用。
+
+单纯学directx的话以上3本足以，认真学习要1年左右时间，差不多是c++半年，d3d半年。
+做习题最重要，不做习题=没学。
+单纯想做游戏的差不多这点就行了。
+
+魔兽中的dx写屏（原版为英文）
+http://blog.csdn.net/langyanduan/article/details/7337290
+
+ 封装远程注入类CreateRemoteThreadEx
+http://blog.csdn.net/xiaocaiju/article/details/7668473

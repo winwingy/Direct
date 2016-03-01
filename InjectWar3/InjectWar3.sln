@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Loader", "Loader\Loader.vcxproj", "{099B4F0A-622E-49DF-931E-E8BDF2E98D79}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dll", "dll\dll.vcxproj", "{F7403B9E-5E46-4241-B0B7-2C4158A06E5F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HookTxtTest", "HookTxtTest\HookTxtTest.vcxproj", "{EEB88820-62B3-466F-ADEC-5A361665F1E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{099B4F0A-622E-49DF-931E-E8BDF2E98D79}.Debug|Win32.ActiveCfg = Debug|Win32
+		{099B4F0A-622E-49DF-931E-E8BDF2E98D79}.Debug|Win32.Build.0 = Debug|Win32
+		{099B4F0A-622E-49DF-931E-E8BDF2E98D79}.Release|Win32.ActiveCfg = Release|Win32
+		{099B4F0A-622E-49DF-931E-E8BDF2E98D79}.Release|Win32.Build.0 = Release|Win32
+		{F7403B9E-5E46-4241-B0B7-2C4158A06E5F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F7403B9E-5E46-4241-B0B7-2C4158A06E5F}.Debug|Win32.Build.0 = Debug|Win32
+		{F7403B9E-5E46-4241-B0B7-2C4158A06E5F}.Release|Win32.ActiveCfg = Release|Win32
+		{F7403B9E-5E46-4241-B0B7-2C4158A06E5F}.Release|Win32.Build.0 = Release|Win32
+		{EEB88820-62B3-466F-ADEC-5A361665F1E4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EEB88820-62B3-466F-ADEC-5A361665F1E4}.Debug|Win32.Build.0 = Debug|Win32
+		{EEB88820-62B3-466F-ADEC-5A361665F1E4}.Release|Win32.ActiveCfg = Release|Win32
+		{EEB88820-62B3-466F-ADEC-5A361665F1E4}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

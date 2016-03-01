@@ -26,3 +26,12 @@
 *.exe
 *.out
 *.app
+/InjectWar3/Debug
+/InjectWar3/HookTxtTest/Debug
+/InjectWar3/Loader/Debug
+/InjectWar3/ipch/dll-f9bf7053/*.ipch
+/InjectWar3/ipch/hooktxttest-c7a2a33d/*.ipch
+/InjectWar3/*.suo
+/InjectWar3/dll/Debug
+/InjectWar3/*.opensdf
+/InjectWar3/ipch/loader-ab8c0629/*.ipch
