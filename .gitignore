@@ -35,3 +35,9 @@
 /InjectWar3/dll/Debug
 /InjectWar3/*.opensdf
 /InjectWar3/ipch/loader-ab8c0629/*.ipch
+/InjectWar3/InjectThreadTest/Debug
+/InjectWar3/InjectThreadTestDll/Debug
+/InjectWar3/ipch/loader-4c5b5b81/*.ipch
+/InjectWar3/ipch/dll-866fa3ab/*.ipch
+*.ipch
+/InjectWar3/InjectWar3.sdf
