@@ -1,7 +1,7 @@
 #include "InjectThread.h"
 #include <tchar.h>
 #include <tlhelp32.h>
-
+#include <sstream>
 
 CInjectThread::CInjectThread(LPTSTR lpDllName)
 {
@@ -20,13 +20,13 @@ BOOL CInjectThread::EnableDebugPrivilege(BOOL bEnable)
 	HANDLE hToken = INVALID_HANDLE_VALUE;
 	// OpenProcessToken
 	if (0 == ::OpenProcessToken(::GetCurrentProcess(),
-		TOKEN_ADJUST_PRIVILEGES, &hToken))
+		TOKEN_ADJUST_PRIVILEGES|TOKEN_QUERY, &hToken))
 	{
 		return FALSE;
 	}
 	LUID luid;
 
-	::LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &luid);
+	BOOL ret = ::LookupPrivilegeValue(NULL, SE_DEBUG_NAME, &luid);
 	TOKEN_PRIVILEGES tp;
 	tp.PrivilegeCount = 1;
 	tp.Privileges[0].Luid = luid;
@@ -39,11 +39,16 @@ BOOL CInjectThread::EnableDebugPrivilege(BOOL bEnable)
 		tp.Privileges[0].Attributes = 0;
 	}
 
-	if (!AdjustTokenPrivileges(hToken, FALSE, &tp, sizeof(TOKEN_PRIVILEGES),
+	if (!AdjustTokenPrivileges(hToken, FALSE, &tp, 0,
 		(PTOKEN_PRIVILEGES)NULL, (PDWORD)NULL))
 	{
 		return FALSE;
 	}
+
+	DWORD err = GetLastError();
+	std::wstringstream ss;
+	ss << L" AdjustTokenPrivileges  err = "<<err<<std::endl;
+	MessageBox(nullptr, ss.str().c_str(), ss.str().c_str(), MB_OK);
 
 	if (GetLastError() == ERROR_NOT_ALL_ASSIGNED)
 	{
@@ -55,11 +60,13 @@ BOOL CInjectThread::EnableDebugPrivilege(BOOL bEnable)
 
 #include <string>
 
-std::string WideCharToAnsi(const std::wstring& text)
-{
-
-
-}
+// std::string WideCharToAnsi(const std::wstring& text)
+// {
+// 	WideCharToMultiByte()
+// 	MultiByteToWideChar
+// 	mutibyteToansi
+// 
+// }
 
 // 注入DLL到指定的地址空间
 BOOL CInjectThread::InjectModuleInto(DWORD dwProcessId)
@@ -110,9 +117,10 @@ BOOL CInjectThread::InjectModuleInto(DWORD dwProcessId)
 	{
 		return FALSE;
 	}
+
 	HMODULE hKernerl32 = GetModuleHandle(L"kernel32.dll");
 	LPTHREAD_START_ROUTINE pfnLoadLibrary = (LPTHREAD_START_ROUTINE)
-		::GetProcAddress(hKernerl32, "LoadLibraryA");
+		::GetProcAddress(hKernerl32, "LoadLibraryW");
 
 	int cbSize = (_tcslen(m_szDllName) + 1)*sizeof(TCHAR);
 	LPVOID lpRemoteDllName = ::VirtualAllocEx(hProcess, 0, cbSize, 
@@ -121,6 +129,10 @@ BOOL CInjectThread::InjectModuleInto(DWORD dwProcessId)
 	::WriteProcessMemory(hProcess, lpRemoteDllName, m_szDllName, cbSize, NULL);
 	HANDLE hRemoteThread = ::CreateRemoteThreadEx(hProcess, nullptr, 0, 
 		pfnLoadLibrary, lpRemoteDllName, 0, nullptr, nullptr);
+	DWORD err = GetLastError();
+	std::wstringstream ss;
+	ss << L"err = "<<err<<std::endl;
+	MessageBox(nullptr, ss.str().c_str(), ss.str().c_str(), MB_OK);
 	if (NULL == hRemoteThread)
 	{
 		::CloseHandle(hProcess);

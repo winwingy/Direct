@@ -8,9 +8,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		L"E:\\MyStudy\\GitHubCode\\Direct\\InjectWar3\\Debug\\InjectThreadTestDll.dll");
 
 	// 要打开的进程 ID
-	injectThread.InjectModuleInto(6552);
+	injectThread.InjectModuleInto(6920);
 	
 	Sleep(20000);
 
-	injectThread.EjectModuleFrom(6552);
+	injectThread.EjectModuleFrom(6920);
 }
