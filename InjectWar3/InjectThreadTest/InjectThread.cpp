@@ -110,8 +110,10 @@ BOOL CInjectThread::InjectModuleInto(DWORD dwProcessId)
 	}
 
 	// 如果没加载， 打开进程， 远程注入
+
 	HANDLE hProcess = ::OpenProcess(
-		PROCESS_CREATE_THREAD|PROCESS_VM_OPERATION|PROCESS_VM_WRITE, FALSE,
+		PROCESS_VM_READ|PROCESS_CREATE_THREAD|
+		PROCESS_VM_OPERATION|PROCESS_VM_WRITE|PROCESS_QUERY_INFORMATION, FALSE,
 		dwProcessId);
 	if (!hProcess)
 	{
@@ -120,7 +122,7 @@ BOOL CInjectThread::InjectModuleInto(DWORD dwProcessId)
 
 	HMODULE hKernerl32 = GetModuleHandle(L"kernel32.dll");
 	LPTHREAD_START_ROUTINE pfnLoadLibrary = (LPTHREAD_START_ROUTINE)
-		::GetProcAddress(hKernerl32, "LoadLibrary");
+		::GetProcAddress(hKernerl32, "LoadLibraryW");
 
 	int cbSize = (_tcslen(m_szDllName) + 1)*sizeof(TCHAR);
 	LPVOID lpRemoteDllName = ::VirtualAllocEx(hProcess, 0, cbSize, 

@@ -33,4 +33,6 @@
 *.opensdf
 *.sdf
 */Debug/
+*/*/Debug/
 */Release/
+*/*/Release/
