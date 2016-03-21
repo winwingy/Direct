@@ -120,7 +120,7 @@ BOOL CInjectThread::InjectModuleInto(DWORD dwProcessId)
 
 	HMODULE hKernerl32 = GetModuleHandle(L"kernel32.dll");
 	LPTHREAD_START_ROUTINE pfnLoadLibrary = (LPTHREAD_START_ROUTINE)
-		::GetProcAddress(hKernerl32, "LoadLibraryW");
+		::GetProcAddress(hKernerl32, "LoadLibrary");
 
 	int cbSize = (_tcslen(m_szDllName) + 1)*sizeof(TCHAR);
 	LPVOID lpRemoteDllName = ::VirtualAllocEx(hProcess, 0, cbSize, 
